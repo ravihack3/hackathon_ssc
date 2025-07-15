@@ -60,6 +60,7 @@ export const Cart: React.FC<CartProps> = ({
           </button>
           <div>
             <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
+          </div>
         </div>
       </div>
 
