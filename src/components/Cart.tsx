@@ -59,11 +59,7 @@ export const Cart: React.FC<CartProps> = ({
             <ArrowLeft className="h-6 w-6 text-gray-600" />
           </button>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              amazon <span className="text-blue-600 font-normal italic">now</span>
-            </h1>
-            <p className="text-sm text-gray-600">Your Cart</p>
-          </div>
+            <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
         </div>
       </div>
 

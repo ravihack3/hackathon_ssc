@@ -105,13 +105,14 @@ function App() {
 
   const getDeliveryTime = (sellerId: string): string => {
     const deliveryTimes: { [key: string]: string } = {
-      'amazon': '12-15 mins',
       'zara': '15-20 mins',
       'zudio': '18-25 mins',
       'mayuri-bakery': '10-15 mins',
       'nandini': '8-12 mins',
       'medplus': '20-30 mins',
-      'karachi-bakery': '15-20 mins'
+      'karachi-bakery': '15-20 mins',
+      'grocery-store': '12-15 mins',
+      'spice-market': '14-18 mins'
     };
     return deliveryTimes[sellerId] || '15-20 mins';
   };
@@ -178,7 +179,8 @@ function App() {
       'Nandini Milk Parlour': 'nandini',
       'MedPlus': 'medplus',
       'Karachi Bakery': 'karachi-bakery',
-      'Amazon': 'amazon'
+      'Grocery Store': 'grocery-store',
+      'Spice Market': 'spice-market'
     };
     return storeMap[storeName] || storeName.toLowerCase().replace(/\s+/g, '-');
   };

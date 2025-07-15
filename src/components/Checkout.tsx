@@ -47,8 +47,19 @@ export const Checkout: React.FC<CheckoutProps> = ({
   };
 
   const getTotalDeliveryFee = () => {
-    if (ecoFriendlyDelivery) return 20; // Single delivery fee
+    if (ecoFriendlyDelivery) return 25; // Single delivery fee for eco-friendly
     return sellerCarts.reduce((total, cart) => total + getDeliveryFee(cart), 0);
+  };
+
+  const getEcoDeliveryTime = () => {
+    if (!ecoFriendlyDelivery) return '';
+    // Calculate eco delivery time as max individual time + 15 minutes
+    const maxTime = Math.max(...sellerCarts.map(cart => {
+      const timeStr = cart.deliveryTime;
+      const timeNum = parseInt(timeStr.split('-')[1] || timeStr.split(' ')[0]);
+      return timeNum;
+    }));
+    return `${maxTime + 10}-${maxTime + 20} mins`;
   };
 
   const finalAmount = totalAmount + getTotalDeliveryFee();
@@ -74,9 +85,7 @@ export const Checkout: React.FC<CheckoutProps> = ({
             <ArrowLeft className="h-6 w-6 text-gray-600" />
           </button>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              amazon <span className="text-blue-600 font-normal italic">now</span>
-            </h1>
+            <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
             <p className="text-sm text-gray-600">Checkout ({sellerCarts.length} sellers)</p>
           </div>
         </div>
@@ -91,7 +100,7 @@ export const Checkout: React.FC<CheckoutProps> = ({
               <div>
                 <h3 className="font-bold text-green-800">Eco-Friendly Delivery</h3>
                 <p className="text-sm text-green-600">
-                  Single delivery partner picks up from all stores (+10-15 mins)
+                  Single delivery partner picks up from all stores ({getEcoDeliveryTime()})
                 </p>
               </div>
             </div>
@@ -121,7 +130,7 @@ export const Checkout: React.FC<CheckoutProps> = ({
                   <div className="flex items-center space-x-2">
                     <Clock className="h-4 w-4 text-green-600" />
                     <span className="text-sm text-green-600 font-medium">
-                      {ecoFriendlyDelivery ? 'Combined delivery' : cart.deliveryTime}
+                      {ecoFriendlyDelivery ? getEcoDeliveryTime() : cart.deliveryTime}
                     </span>
                   </div>
                 </div>

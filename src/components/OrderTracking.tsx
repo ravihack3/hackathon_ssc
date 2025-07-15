@@ -73,9 +73,7 @@ export const OrderTracking: React.FC<OrderTrackingProps> = ({
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b px-4 py-4">
-        <h1 className="text-xl font-bold text-gray-900">
-          amazon <span className="text-blue-600 font-normal italic">now</span>
-        </h1>
+        <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
         <p className="text-sm text-gray-600">Order ID: {orderDetails.orderId}</p>
       </div>
 
@@ -114,7 +112,6 @@ export const OrderTracking: React.FC<OrderTrackingProps> = ({
           const currentStatus = sellerStatuses[cart.sellerId] || 0;
           const estimatedTime = estimatedTimes[cart.sellerId] || 0;
           const partner = getDeliveryPartner(index);
-          const isAmazon = cart.sellerId === 'amazon';
 
           return (
             <div key={cart.sellerId} className="bg-white rounded-lg p-4 border border-gray-200">
@@ -135,8 +132,8 @@ export const OrderTracking: React.FC<OrderTrackingProps> = ({
               {/* Horizontal Progress Bar */}
               <div className="mb-4">
                 <div className="flex items-center justify-between mb-2">
-                  {trackingSteps.slice(isAmazon ? 2 : 0).map((step, stepIndex) => {
-                    const actualIndex = isAmazon ? stepIndex + 2 : stepIndex;
+                  {trackingSteps.map((step, stepIndex) => {
+                    const actualIndex = stepIndex;
                     const IconComponent = step.icon;
                     const isCompleted = actualIndex <= currentStatus;
                     const isCurrent = actualIndex === currentStatus;
@@ -172,7 +169,7 @@ export const OrderTracking: React.FC<OrderTrackingProps> = ({
                   <div 
                     className="absolute top-0 left-4 h-1 bg-green-500 rounded-full transition-all duration-1000"
                     style={{ 
-                      width: `calc(${(currentStatus / (isAmazon ? 2 : 4)) * 100}% - 2rem)` 
+                      width: `calc(${(currentStatus / 4) * 100}% - 2rem)` 
                     }}
                   ></div>
                 </div>

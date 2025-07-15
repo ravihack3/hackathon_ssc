@@ -21,7 +21,7 @@ export const Header: React.FC<HeaderProps> = ({ onSearch, searchQuery }) => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center">
             <h1 className="text-2xl font-bold text-black">
-              amazon <span className="text-blue-600 font-normal italic">now</span>
+              QuickStore
             </h1>
           </div>
           <X className="h-6 w-6 text-black" />

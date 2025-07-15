@@ -73,9 +73,7 @@ export const Payment: React.FC<PaymentProps> = ({
             <ArrowLeft className="h-6 w-6 text-gray-600" />
           </button>
           <div>
-            <h1 className="text-xl font-bold text-gray-900">
-              amazon <span className="text-blue-600 font-normal italic">now</span>
-            </h1>
+            <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
             <p className="text-sm text-gray-600">Payment</p>
           </div>
         </div>
@@ -176,13 +174,25 @@ export const Payment: React.FC<PaymentProps> = ({
         <div className="bg-white rounded-lg p-4 border border-gray-200">
           <h3 className="font-bold text-gray-900 mb-3">Order Summary</h3>
           <div className="space-y-2 text-sm">
+            {orderDetails.sellerCarts && (
+              <>
+                {orderDetails.sellerCarts.map((cart: any) => (
+                  <div key={cart.sellerId} className="flex justify-between">
+                    <span className="text-gray-600">{cart.sellerName} ({cart.items.length} items)</span>
+                    <span className="font-medium">₹{cart.items.reduce((total: number, item: any) => total + (item.price * item.quantity), 0)}</span>
+                  </div>
+                ))}
+              </>
+            )}
             <div className="flex justify-between">
-              <span className="text-gray-600">Items ({orderDetails.items.length})</span>
-              <span className="font-medium">₹{orderDetails.totalAmount - (orderDetails.totalAmount > 99 ? 0 : 30)}</span>
+              <span className="text-gray-600">Subtotal</span>
+              <span className="font-medium">₹{orderDetails.totalAmount - (orderDetails.ecoFriendlyDelivery ? 25 : 30)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Delivery</span>
-              <span className="font-medium text-green-600">FREE</span>
+              <span className="font-medium">
+                {orderDetails.ecoFriendlyDelivery ? '₹25 (Eco)' : 'FREE'}
+              </span>
             </div>
             <div className="border-t pt-2 flex justify-between font-bold">
               <span>Total</span>
