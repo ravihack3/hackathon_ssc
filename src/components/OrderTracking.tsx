@@ -73,7 +73,9 @@ export const OrderTracking: React.FC<OrderTrackingProps> = ({
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white border-b px-4 py-4">
-        <h1 className="text-xl font-bold text-gray-900">QuickStore</h1>
+        <h1 className="text-xl font-bold text-gray-900">
+          amazon <span className="text-blue-600 font-normal italic">now</span>
+        </h1>
         <p className="text-sm text-gray-600">Order ID: {orderDetails.orderId}</p>
       </div>
 
